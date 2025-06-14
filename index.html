@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WebAR с маркером Kanji</title>
+    <!-- Подключаем AR.js и A-Frame -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        a-scene { height: 100vh; width: 100vw; }
+    </style>
+</head>
+<body>
+    <!-- Сцена AR.js с маркером -->
+    <a-scene 
+        embedded 
+        arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;"
+    >
+        <!-- Маркер (используем kanji.patt) -->
+        <a-marker 
+            type="pattern" 
+            url="kanji.patt"  <!-- Файл паттерна -->
+            smooth="true" 
+            smoothCount="10" 
+            smoothTolerance="0.01" 
+        >
+            <!-- 3D-объект (например, красный куб) -->
+            <a-box 
+                position="0 0.5 0" 
+                color="red" 
+                scale="0.5 0.5 0.5"
+            ></a-box>
+            
+            <!-- Текст (опционально) -->
+            <a-text 
+                value="Это Kanji!" 
+                position="0 1.5 0" 
+                color="black" 
+                align="center"
+            ></a-text>
+        </a-marker>
+        
+        <!-- Камера -->
+        <a-entity camera></a-entity>
+    </a-scene>
+</body>
+</html>
